@@ -1,8 +1,11 @@
 from aiogram import types, Dispatcher
-from create_bot import bot
+from aiogram.dispatcher.filters import Text
+from create_bot import bot, dp
 from inline_buttons import urlkb
+from inline_buttons.inline import inkb
 from keyboard import kb_client
 
+answ = dict()
 
 # @dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
@@ -41,10 +44,33 @@ async def url_command(message: types.Message):
     await message.answer('Urles:', reply_markup=urlkb)
 
 
+# хендлер для callback button
+#@dp.message_handler(commands=['test_callback'])
+async def test_callback_button(message: types.Message):
+    await message.answer('Inline callback button', reply_markup=inkb)
+
+
+# хендлер для callback (что он вернет)
+@dp.callback_query_handler(Text(startswith='like_'))
+async def www_call(callback: types.CallbackQuery):
+    result = int(callback.data.split('_')[1])
+    #await callback.answer('Вы проголосовали')
+
+    # чтобы пользоватеь не проголосовал 2 раза
+    if f'{callback.from_user.id}' not in answ:
+        answ[f'{callback.from_user.id}'] = result
+        await callback.answer('Вы проголосовали')
+    else:
+        await callback.answer('Вы уже проголосовали', show_alert=True)
+
+
 # команды хендлеров для регистрации бота
-def register_handlers_client(dp: Dispatcher):
+def register_handlers_client(dp: Dispatcher, startwith=None):
     dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(command_help, commands=['help'])
     dp.register_message_handler(rules_command, commands=['rules'])
     dp.register_message_handler(start_test, commands=['test'])
     dp.register_message_handler(url_command, commands=['urles'])
+    dp.register_message_handler(test_callback_button, commands=['test_callback'])
+
+
