@@ -26,8 +26,9 @@ async def command_help(message: types.Message):
 
 # @dp.message_handler(commands=['rules'])
 async def rules_command(message: types.Message):
-    await message.answer('Каждый вариант состоит из 40 вопросов\nМаты запрещены!''')
+    await message.answer('Каждый вариант состоит из 40 вопросов''')
     #await bot.send_message(message.from_user.id, 'Каждый вариант состоит из 40 вопросов')
+
 
 # команды хендлеров для регистрации бота
 def register_handlers_client(dp: Dispatcher):

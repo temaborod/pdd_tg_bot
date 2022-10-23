@@ -5,7 +5,7 @@ from handlers import client, admin, other
 async def on_startup(_):  # команды в терминал о работе бота
     print('BOT IS ONLINE')
 
-# хендлеры регистрируются по порядку: фуекция, в которой есть хендлер без аргумента - последняя
+# хендлеры регистрируются по порядку: функция, в которой есть хендлер без аргумента - последняя
 client.register_handlers_client(dp)
 other.register_handlers_other(dp)
 
