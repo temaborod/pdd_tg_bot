@@ -8,4 +8,3 @@ async def empty(message: types.Message):
 
 def register_handlers_other(dp: Dispatcher):  # функция регистрации хендлеров
     dp.register_message_handler(empty)
-

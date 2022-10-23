@@ -7,7 +7,12 @@ urlButton1 = InlineKeyboardButton(text='YouTube', url='https://www.youtube.com/w
 urlButton2 = InlineKeyboardButton(text='Translator', url='https://translate.yandex.ru/?lang=ru-en')
 
 # callback buttons
-inkb = InlineKeyboardMarkup(row_width=1).add(InlineKeyboardButton(text='Like', callback_data='like_1')).add(InlineKeyboardButton(text='disLike', callback_data='like_-1'))
+inkb = InlineKeyboardMarkup(row_width=1)\
+    .add(InlineKeyboardButton(text='Ответ 1', callback_data='like_1'))\
+    .add(InlineKeyboardButton(text='Ответ 2', callback_data='like_-1'))\
+    .add(InlineKeyboardButton(text='Ответ 3', callback_data='like_-1'))\
+    .add(InlineKeyboardButton(text='Ответ 4', callback_data='like_-1'))
+
 
 urlkb.add(urlButton1, urlButton2)  # добавляем кнопки
 
