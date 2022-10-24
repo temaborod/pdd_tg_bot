@@ -1,10 +1,9 @@
 from aiogram import types, Dispatcher
 from create_bot import bot
-from inline_buttons import urlkb
 from inline_buttons.inline import inkb
 from keyboard import kb_client
 
-answ = dict()
+#answ = dict()
 
 # @dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
@@ -32,16 +31,10 @@ async def command_help(message: types.Message):
 async def rules_command(message: types.Message):
     await message.answer('''
     Каждый вариант состоит из 40 вопросов
-Отвечаешь на вопрос - бот даст знать правильно ли ты ответил
-Ели ответ неверный - бот объяснит почему
-Как закончишь решать вариант - узнаешь свой результат
+    Отвечаешь на вопрос - бот даст знать правильно ли ты ответил
+    Ели ответ неверный - бот объяснит почему
+    Как закончишь решать вариант - узнаешь свой результат
     ''')
-
-
-# хендлер для вызова инлайн клавиатуры
-# @dp.message_handler(commands='urles')
-async def url_command(message: types.Message):
-    await message.answer('Urles:', reply_markup=urlkb)
 
 
 # команда начала теста по кнопке из client_kb
@@ -75,7 +68,6 @@ def register_handlers_client(dp: Dispatcher, startwith=None):
     dp.register_message_handler(command_start, commands=['start'])
     dp.register_message_handler(command_help, commands=['help'])
     dp.register_message_handler(rules_command, commands=['rules'])
-    dp.register_message_handler(url_command, commands=['urles'])
     dp.register_message_handler(start_test, commands=['test'])
 
 
