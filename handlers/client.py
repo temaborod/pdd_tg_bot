@@ -1,17 +1,31 @@
 import json
 import os
 from random import choice
-
 from aiogram import types, Dispatcher
-
 from create_bot import bot
-from inline_buttons.inline import inkb
+#from inline_buttons.inline import inkb
+from keyboard.client_kb import kb_client
+from create_bot import dp
 
 
-#answ = dict()
+users = [681076159]
 
-# @dp.message_handler(commands=['start'])
+#@dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
+    users = [681076159]
+    if message.from_user.id in users:
+        await bot.send_message(message.from_user.id, '<b>Привет!</b> Это бот для подготовки к экзамену ПДД', parse_mode="HTML",
+                               reply_markup=kb_client)
+
+
+@dp.message_handler(lambda message: message.from_user.id not in users, commands=['start', 'help', 'rules', 'test'])
+async def some(message):
+    print('unregistered user: ', message.from_user.id, ':::', message.from_user.first_name)
+    await bot.send_message(message.from_user.id, 'Отказано в доступе!')
+
+
+# @dp.message_handler(commands=['tests'])
+async def start_test(message: types.Message):
     try:
 
         if message.from_user.id != message.chat.id:
@@ -40,12 +54,13 @@ async def command_start(message: types.Message):
         await message.answer('Try it now')
 
 
+
+
 # @dp.message_handler(commands=['help'])
 async def command_help(message: types.Message):
     try:
         await bot.send_message(message.from_user.id, '''
         Commands:
-        /start - старт бота
         /help - помощь
         /rules - правила
         /test - начать тест
@@ -54,40 +69,18 @@ async def command_help(message: types.Message):
         await message.answer('Try it now')
 
 
+
+
 # @dp.message_handler(commands=['rules'])
 async def rules_command(message: types.Message):
     await message.answer('''
-    Каждый вариант состоит из 40 вопросов
-Отвечаешь на вопрос - бот даст знать правильно ли ты ответил
-Ели ответ неверный - бот объяснит почему
-Как закончишь решать вариант - узнаешь свой результат
+    * Каждый вариант состоит из 40 вопросов
+* Отвечаешь на вопрос - бот даст знать правильно ли ты ответил
+* Ели ответ неверный - бот объяснит почему
+* Как закончишь решать вариант - узнаешь свой результат
     ''')
 
 
-# команда начала теста по кнопке из client_kb
-# @dp.message_handler(commands=['test'])
-async def start_test(message: types.Message):
-    await message.answer('Inline callback button', reply_markup=inkb)
-
-
-# хендлер для callback button
-#@dp.message_handler(commands=['test_callback'])
-# async def test_callback_button(message: types.Message):
-#     await message.answer('Inline callback button', reply_markup=inkb)
-
-
-# хендлер для callback (что он вернет)
-# @dp.callback_query_handler(Text(startswith='like_'))
-# async def www_call(callback: types.CallbackQuery):
-#     result = int(callback.data.split('_')[1])
-#     #await callback.answer('Вы проголосовали')
-#
-#     # чтобы пользоватеь не проголосовал 2 раза
-#     if f'{callback.from_user.id}' not in answ:
-#         answ[f'{callback.from_user.id}'] = result
-#         await callback.answer('Вы проголосовали')
-#     else:
-#         await callback.answer('Вы уже проголосовали', show_alert=True)
 
 
 # команды хендлеров для регистрации бота

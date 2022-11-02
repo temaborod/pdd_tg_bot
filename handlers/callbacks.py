@@ -40,7 +40,7 @@ async def callback_handler(callback_query: types.CallbackQuery):
             file.close()
 
             message = data[question]["question"] + "\n\nВаш ответ: " + data[question]["answers"][answer]['name'] + "\n"
-            message += ("Ответ верный!", "Ответ неверный!\n\nПравильный ответ: " + data[question]["correct"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
+            message += ("\nОтвет верный!", "\nОтвет неверный!\n\nПравильный ответ: " + data[question]["correct"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
             message += ("", "\n\nОбъяснение:\n" + data[question]["exp"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
 
             if data[question]["correct"] == data[question]["answers"][answer]['name']:

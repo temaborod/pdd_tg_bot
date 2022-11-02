@@ -1,11 +1,11 @@
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
-# callback buttons
-inkb = InlineKeyboardMarkup(row_width=1)\
-    .add(InlineKeyboardButton(text='Ответ 1', callback_data='like_1'))\
-    .add(InlineKeyboardButton(text='Ответ 2', callback_data='like_-1'))\
-    .add(InlineKeyboardButton(text='Ответ 3', callback_data='like_-1'))\
-    .add(InlineKeyboardButton(text='Ответ 4', callback_data='like_-1'))
+# from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+#
+# # callback buttons
+# inkb = InlineKeyboardMarkup(row_width=1)\
+#     .add(InlineKeyboardButton(text='Ответ 1', callback_data='like_1'))\
+#     .add(InlineKeyboardButton(text='Ответ 2', callback_data='like_-1'))\
+#     .add(InlineKeyboardButton(text='Ответ 3', callback_data='like_-1'))\
+#     .add(InlineKeyboardButton(text='Ответ 4', callback_data='like_-1'))
 
 # кнопка- ссылка
 # urlkb = InlineKeyboardMarkup(row_width=1)  # по 1 кнопке в ряд

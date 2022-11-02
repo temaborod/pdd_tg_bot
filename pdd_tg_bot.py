@@ -2,9 +2,11 @@ from aiogram.utils import executor
 from create_bot import dp
 from handlers import client, admin, other
 
+
 # команды в терминал о работе бота
 async def on_startup(_):
     print('BOT IS ONLINE')
+
 
 # хендлеры регистрируются по порядку: функция, в которой есть хендлер без аргумента - последняя
 client.register_handlers_client(dp)
