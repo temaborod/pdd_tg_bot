@@ -1,8 +1,8 @@
 import os
 import json
-
 from aiogram import types
 from create_bot import bot, dp
+
 
 @dp.callback_query_handler(lambda callback_query: True)
 async def callback_handler(callback_query: types.CallbackQuery):
@@ -40,7 +40,7 @@ async def callback_handler(callback_query: types.CallbackQuery):
             file.close()
 
             message = data[question]["question"] + "\n\nВаш ответ: " + data[question]["answers"][answer]['name'] + "\n"
-            message += ("\nОтвет верный!", "\nОтвет неверный!\n\nПравильный ответ: " + data[question]["correct"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
+            message += ("\n" + u"\U00002705" + "Ответ верный!", "\n" + u"\U0000274C" + "Ответ неверный!\n\nПравильный ответ: " + data[question]["correct"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
             message += ("", "\n\nОбъяснение:\n" + data[question]["exp"])[(data[question]["correct"] == data[question]["answers"][answer]['name']) is False]
 
             if data[question]["correct"] == data[question]["answers"][answer]['name']:
